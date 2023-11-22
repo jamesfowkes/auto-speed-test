@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.chrome.options import Options
 
 class wait_for_testing_complete(object):
 
@@ -11,7 +12,10 @@ class wait_for_testing_complete(object):
         return driver.find_element(By.CSS_SELECTOR, "div.card-body div.successTest")
 
 def run_test():
-    driver = webdriver.Chrome()
+    driver_options = Options()
+    driver_options.add_argument('--headless')
+    driver_options.add_argument('--disable-gpu')
+    driver = webdriver.Chrome(chrome_options=driver_options)
     
     driver.get("https://speedtest.btwholesale.com/details")
 
